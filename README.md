@@ -6,7 +6,7 @@ Usage:
 > cd <directory of project>
 > mvn install 
 
-> java -jar  target/futures-0.0.1-SNAPSHOT.jar inputfile=<full path of input file>
+> java -jar  target/futures-0.0.1-SNAPSHOT.jar inputfile="full path of input file"
 
 
 Output.csv will be generated in the current folder.
