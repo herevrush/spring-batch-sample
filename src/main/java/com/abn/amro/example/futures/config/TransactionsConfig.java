@@ -2,6 +2,7 @@ package com.abn.amro.example.futures.config;
 
 import com.abn.amro.example.futures.model.ReportItem;
 import com.abn.amro.example.futures.model.Transaction;
+import com.abn.amro.example.futures.reader.TransactionFieldSetMapper;
 import com.abn.amro.example.futures.writer.StringHeaderWriter;
 import com.abn.amro.example.futures.processor.TransactionProcessor;
 import com.abn.amro.example.futures.reader.TransactionReader;
@@ -70,7 +71,7 @@ public class TransactionsConfig {
         FieldSetMapper<Transaction> fieldSetMapper = new BeanWrapperFieldSetMapper<Transaction>() {{
             setTargetType(Transaction.class);
         }};
-        lineMapper.setFieldSetMapper(fieldSetMapper);
+        lineMapper.setFieldSetMapper(new TransactionFieldSetMapper());
 
 
         flatFileItemReader.setLineMapper(lineMapper);

@@ -5,6 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.mockito.Mockito.when;
 
 public class TransactionTest {
@@ -21,7 +25,7 @@ public class TransactionTest {
         when(transaction.getExchangeCode()).thenReturn("SGX ");
         when(transaction.getProductGroupCode()).thenReturn("FU");
         when(transaction.getSymbol()).thenReturn("NK    ");
-        when(transaction.getExpirationDate()).thenReturn("20100910");
+        when(transaction.getExpirationDateString()).thenReturn("20100910");
         when(transaction.getQuantityLong()).thenReturn(Integer.parseInt("0000000003"));
         when(transaction.getQuantityShort()).thenReturn(Integer.parseInt("0000000003"));
     }
@@ -36,14 +40,14 @@ public class TransactionTest {
         Assert.assertEquals("SGX ",transaction.getExchangeCode());
         Assert.assertEquals("FU",transaction.getProductGroupCode());
         Assert.assertEquals("NK    ",transaction.getSymbol());
-        Assert.assertEquals("20100910",transaction.getExpirationDate());
+        Assert.assertEquals("20100910",transaction.getExpirationDateString());
         Assert.assertEquals(3,transaction.getQuantityLong());
         Assert.assertEquals(3,transaction.getQuantityShort());
 
     }
 
     @Test
-    public  void testClientId(){
+    public  void testClientId() throws ParseException {
         transaction = new Transaction();
         transaction.setClientType("CL  ");
         transaction.setClientNumber("4321");
@@ -52,12 +56,12 @@ public class TransactionTest {
         transaction.setExchangeCode("SGX");
         transaction.setProductGroupCode("FU");
         transaction.setSymbol("NK    ");
-        transaction.setExpirationDate("20100910");
+        transaction.setExpirationDate(new SimpleDateFormat("yyyyMMdd").parse("20100910"));
         Assert.assertEquals("CL-4321-00020001",transaction.getClientId());
     }
 
     @Test
-    public  void testProductId(){
+    public  void testProductId() throws ParseException {
         transaction = new Transaction();
         transaction.setClientType("CL  ");
         transaction.setClientNumber("4321");
@@ -66,7 +70,7 @@ public class TransactionTest {
         transaction.setExchangeCode("SGX");
         transaction.setProductGroupCode("FU");
         transaction.setSymbol("NK    ");
-        transaction.setExpirationDate("20100910");
+        transaction.setExpirationDate(new SimpleDateFormat("yyyyMMdd").parse("20100910"));
         Assert.assertEquals("SGX(FU)-NK-20100910",transaction.getProductId());
     }
 

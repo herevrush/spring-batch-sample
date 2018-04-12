@@ -7,11 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class TransactionProcessor implements ItemProcessor<List<Transaction>,List<ReportItem>> {
@@ -24,22 +21,28 @@ public class TransactionProcessor implements ItemProcessor<List<Transaction>,Lis
     public List<ReportItem> process(List<Transaction> transactions) {
 
         if(transactions != null){
+//            Date date = new Date();
+//            String dateString = new SimpleDateFormat("yyyyMMdd").format(date);
             Map<String,Client> clientsMap=new HashMap<>();
             transactions.forEach(transaction -> {
-                String clientId = transaction.getClientId();
-                String productId = transaction.getProductId();
-                int quantityLong = transaction.getQuantityLong();
-                int quantityShort = transaction.getQuantityShort();
-                int quantity = quantityLong - quantityShort;
-                Client client;
-                if(clientsMap.containsKey(clientId)){
-                    client = clientsMap.get(clientId);
-                }
-                else{
-                    client = new Client(clientId);
-                    clientsMap.put(clientId,client);
-                }
-                client.addProductWithQuantity(productId,quantity);
+
+//                if(transaction.getExpirationDateString().equals(dateString)){
+                    String clientId = transaction.getClientId();
+                    String productId = transaction.getProductId();
+                    int quantityLong = transaction.getQuantityLong();
+                    int quantityShort = transaction.getQuantityShort();
+                    int quantity = quantityLong - quantityShort;
+                    Client client;
+                    if(clientsMap.containsKey(clientId)){
+                        client = clientsMap.get(clientId);
+                    }
+                    else{
+                        client = new Client(clientId);
+                        clientsMap.put(clientId,client);
+                    }
+                    client.addProductWithQuantity(productId,quantity);
+//                }
+
             });
 
             //create summary output

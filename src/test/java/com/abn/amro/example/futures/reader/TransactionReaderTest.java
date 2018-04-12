@@ -42,7 +42,7 @@ public class TransactionReaderTest {
         Assert.assertEquals("SGX",transaction.getExchangeCode());
         Assert.assertEquals("FU",transaction.getProductGroupCode());
         Assert.assertEquals("NK",transaction.getSymbol());
-        Assert.assertEquals("20100910",transaction.getExpirationDate());
+        Assert.assertEquals("20100910",transaction.getExpirationDateString());
         Assert.assertEquals(1,transaction.getQuantityLong());
         Assert.assertEquals(0,transaction.getQuantityShort());
         Assert.assertEquals("CL-4321-00020001", transaction.getClientId());

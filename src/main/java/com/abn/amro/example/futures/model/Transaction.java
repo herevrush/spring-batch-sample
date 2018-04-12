@@ -1,5 +1,8 @@
 package com.abn.amro.example.futures.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Transaction object to parse the transaction record.
  */
@@ -18,7 +21,7 @@ public class Transaction {
 
     private String symbol;
 
-    private String expirationDate;
+    private Date expirationDate;
 
     private int quantityLong;
 
@@ -79,31 +82,23 @@ public class Transaction {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
+//
+//    public String getExpirationDate() {
+//        return expirationDate;
+//    }
+//
+//    public void setExpirationDate(String expirationDate) {
+//        this.expirationDate = expirationDate;
+//    }
 
-    public String getExpirationDate() {
+
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
-
-//    public String getQuantityLong() {
-//        return quantityLong;
-//    }
-//
-//    public void setQuantityLong(String quantityLong) {
-//        this.quantityLong = quantityLong;
-//    }
-//
-//    public String getQuantityShort() {
-//        return quantityShort;
-//    }
-//
-//    public void setQuantityShort(String quantityShort) {
-//        this.quantityShort = quantityShort;
-//    }
-
 
     public int getQuantityLong() {
         return quantityLong;
@@ -124,7 +119,7 @@ public class Transaction {
 
     public String getProductId(){
         return getExchangeCode().trim() + "("+ getProductGroupCode().trim()
-                + ")-"+getSymbol().trim()+ "-"+getExpirationDate();
+                + ")-"+getSymbol().trim()+ "-"+getExpirationDateString();
     }
 
     public String getClientId(){
@@ -132,5 +127,8 @@ public class Transaction {
                 + "-"+getAccountNumber()+getSubAccountNumber();
     }
 
+    public String getExpirationDateString(){
+        return  new SimpleDateFormat("yyyyMMdd").format(expirationDate);
+    }
 }
 

@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class TransactionProcessorTest {
         transaction.setExchangeCode("SGX");
         transaction.setProductGroupCode("FU");
         transaction.setSymbol("NK    ");
-        transaction.setExpirationDate("20100910");
+        transaction.setExpirationDate(new SimpleDateFormat("yyyyMMdd").parse("20100910"));
         transaction.setQuantityLong(3);
         transaction.setQuantityShort(0);
         transactions.add(transaction);
@@ -40,7 +41,7 @@ public class TransactionProcessorTest {
         transaction.setExchangeCode("SGX");
         transaction.setProductGroupCode("FU");
         transaction.setSymbol("NK    ");
-        transaction.setExpirationDate("20100910");
+        transaction.setExpirationDate(new SimpleDateFormat("yyyyMMdd").parse("20100910"));
         transaction.setQuantityLong(3);
         transaction.setQuantityShort(0);
         transactions.add(transaction);
@@ -53,7 +54,7 @@ public class TransactionProcessorTest {
         transaction.setExchangeCode("SGX");
         transaction.setProductGroupCode("FU");
         transaction.setSymbol("NK    ");
-        transaction.setExpirationDate("20100910");
+        transaction.setExpirationDate(new SimpleDateFormat("yyyyMMdd").parse("20100910"));
         transaction.setQuantityLong(0);
         transaction.setQuantityShort(2);
         transactions.add(transaction);
@@ -66,7 +67,7 @@ public class TransactionProcessorTest {
         transaction.setExchangeCode("CME");
         transaction.setProductGroupCode("FU");
         transaction.setSymbol("N1    ");
-        transaction.setExpirationDate("20100910");
+        transaction.setExpirationDate(new SimpleDateFormat("yyyyMMdd").parse("20100910"));
         transaction.setQuantityLong(0);
         transaction.setQuantityShort(2);
         transactions.add(transaction);
